@@ -400,3 +400,57 @@ navigator对象包含浏览器相关信息，最常用的是userAgent,该属性�
 | forward（）     | 前进                                    |
 | go(参数)        | 前进后退功能，1就是前进一个-1是后退一个 |
 
+## PC端网页特效
+
+### 元素偏移量offset系列
+
+offset相关属性可以动态得到元素的位置（偏移）、大小等。
+
++ 获得元素距离带有定位父元素的位置
++ 获得元素自身的大小（宽度、高度）
++ 返回的数值都不带单位
+
+offset系列常用属性：
+
+`element.offsetParent`：返回该元素带有定位的父元素
+
+`element.offsetTop、element.offsetLeft`：返回元素相对父元素的上方、左方偏移
+
+`element.offsetWidth、element.offsetHeight`:返回自身包括padding、边框、内容区的宽（高）度
+
+**offset与style的区别**
+
+| offset                              | style                                        |
+| ----------------------------------- | -------------------------------------------- |
+| offset可以得到任意样式表的值        | style只能得到行内样式表中的样式值            |
+| offset获得的数值没有单位            | style.width获取的是带有单位的字符串          |
+| offsetWidth包含padding+border+width | style.width获取到的不包含padding和border的值 |
+| offsetWidth获取的是只读属性         | style.width是可读写属性                      |
+| 获取元素大小位置用offset更合适      | 需要元素赋值时用style                        |
+
+淘宝放大镜案例：
+
+思路是通过盒子的`offsetLeft`属性和鼠标事件的`e.PageX、Y`相减得到盒子内鼠标的坐标
+
+模态框拖拽案例：
+
++ `login.style.display设置为none和block`
++ 拖拽的原理，鼠标按下，鼠标移动，鼠标弹起
++ 事件`mousedown、mousemove、mouseup`
++ 鼠标移动时，把最新的top和left赋给模态框即可
++ 移动触发的事件源是模态框的头部
++ 鼠标的坐标 减去鼠标在盒子内的坐标是模态框真正的位置
++ 事件的绑定顺序和关系：鼠标按下获取鼠标在模态框的位置并激活鼠标移动事件，鼠标移动事件触发更新模态框在页面中的位置，鼠标弹起则移除鼠标移动事件
+
+### 元素可视区client系列
+
+### 元素滚动scroll系列
+
+### 动画函数封装
+
+### 常见网页特效案例
+
+
+
+
+
