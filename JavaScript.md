@@ -443,9 +443,74 @@ offset系列常用属性：
 
 ### 元素可视区client系列
 
+`client`获取可视区域的相关信息：边框大小、元素大小
+
+| client属性           | 作用                                         |
+| -------------------- | -------------------------------------------- |
+| element.clientTop    | 返回元素上边框的大小                         |
+| element.clientLeft   | 返回元素左边框的大小                         |
+| element.clientWidth  | 返回包括自身padding,不含边框的宽度，不带单位 |
+| element.clientHeight | 返回包括自身padding,不含边框的高度，不带单位 |
+
+`offsetWidth`带边框、clientWidth不带
+
+#### flexible源码解析
+
+##### 立即执行函数
+
+~~~js
+(function(param){})(param);
+(function(param){}(param));
+~~~
+
+立即执行函数创建了独立作用域，避免命名冲突
+
+##### 源码解析
+
++ `document.documentElement`获取根元素
++ 获取`window.devicePixelRatio`,移动端为2，pc为1
++ 通过`addEventListener`设置页面加载完成后指定body的字体大小
++ rem为响应式布局的字体单位，获取`documentElement`的可视宽度，平分作为rem，设置`html`的字体大小
++ 当页面大小变化`resize`，重新设置字体大小，使用`pageshow`,对比`loaded`事件，火狐的前进后退触发`pageshow`不触发`loaded`
+
 ### 元素滚动scroll系列
 
+scroll系列动态获取该元素的大小和滚动距离
+
+| scroll系列属性       | 作用                               |
+| -------------------- | ---------------------------------- |
+| element.scrollTop    | 返回被卷上去的上侧距离，不带单位   |
+| element.scrollLeft   | 返回被卷去的左边距离，不带单位     |
+| element.scrollWidth  | 返回自身的宽度，不含边框，不带单位 |
+| element.scrollHeight | 返回自身的高度，不含边框，不带单位 |
+
+`element.scrollWidth`不包含边框，对比`element.clientWidth`内容超出时候，`clientWidth`不变，`scroll`滚动事件
+
++ `absolute`绝对定位，是相对于最近的且不是static定位的父元素来定位，可以滚动
++ `Fixed`：绝对定位，是相对于浏览器窗口来定位的，是固定的，不会跟屏幕一起滚动。
+
+| 三大系列总结        | 作用                                                         |
+| ------------------- | ------------------------------------------------------------ |
+| element.offsetWidth | 返回自身包括padding、**边框**、内容区的宽度，返回数值不带单位 |
+| element.clientWidth | 返回自身包括padding、内容区的宽度，返回数值不带单位          |
+| element.scrollWidth | 返回自身实际的宽度，超出去的也算，不含边框，不带单位         |
+
+#### mouseeenter和mouseover的区别
+
++ 当鼠标移动到元素上时就会触发`mouseeenter`
++ `mouseover`经过子盒子和自身盒子都会出发，`mouseeenter`只触发自身盒子
++ `mouseeenter`不会冒泡
++ `mouseleave`鼠标离开，同样不冒泡
+
 ### 动画函数封装
+
+动画原理
+
++ 获取盒子当前位置`offsetLeft`
++ 当前位置加1使用定时器和`style.left`
++ 函数封装传入元素对象
++ 不新加定时器对象，通过添加属性的方法设置定时器
++ 先清楚定时器，再开新定时器
 
 缓动动画中效果原理：让元素运动速度有所变化，最常见的就是让元素慢慢停下来。
 
