@@ -579,3 +579,96 @@ scroll系列动态获取该元素的大小和滚动距离
 滚动窗口至文档中特定位置`window.scroll(x,y)`无单位
 
 带动画的返回顶部采用之前封装的滚动动画，将轴进行切换 
+
+**案例三：筋斗云**
+
+利用动画函数。
+
+## 移动端网页特效
+
+### 触屏事件
+
+未看，略
+
+### 移动端常见特效
+
+未看，略
+
+### 移动端常用开发插件
+
+未看，略
+
+### 移动端常用开发框架
+
+未看，略
+
+## 本地存储
+
+`sessionStorge`可以存储5M，localStorge可存20M，且只能存储字符串，可以将对象`JSON.stringify`后存储
+
+### window.sessionStorge
+
++ `sessionStorge`的生命周期为关闭浏览器窗口
++ 同一窗口可以共享数据，存储的方式为键值对
++ `sessionStorge.setItem('uname',val)`设置数据
++ `sessionStorge.getItem('uname')`获取数据
++ `sessionStorge.removeItem('uname')`删除数据
++ `sessionStorge.clear()`删除页面所有数据
+
+### window.localStorge
+
++ 生命周期为永久，除非手动删除
++ 多页面共享数据，只要为同意浏览器，存储的方式为键值对
+
++ `localStorge.setItem('uname',val)`设置数据
++ `localStorge.getItem('uname')`获取数据
++ `localStorge.removeItem('uname')`删除数据
++ `localStorge.clear()`删除页面所有数据
+
+## jQuery
+
+###  什么是jQuery
+
+`javascript`封装好的预定义函数库，是用原生的`js`封装的。他是一个快速简洁的`js`库，优化了DOM操作、事件处理、动画设计和Ajax交互
+
+### jQuery优点
+
++ 轻量级
++ 跨浏览器兼容
++ 链式编程，隐式迭代
++ 支持事件、样式、动画，支持插件的扩展开发，且是免费开源的
+
+### jQuery的简单使用
+
+如何等页面加载好了再执行？：`$(docunment).ready(funchtion(){})`,或者`$(funchtion(){})`相当于`DOMContentLoaded`
+
+#### jQuery的顶级对象
+
+`$`和`jQuery`等价相当于原生`JS`的window，通过`$`将元素包装成`JQ`对象
+
+### DOM对象和jQuery的区别
+
+原生`JS`获取的是`DOM`对象，`$`获取的是`JQ`对象，`JQ`对象是对`DOM`对象的包装，伪数组的形式存储，他们的使用不能混淆，但是可以相互转换
+
++ 原生转`JQ`：`$(原生对象)`
++ `JQ`转原生：`$("选择符")[index]`或者`$("选择符").get(index)`
+
+
+
+**后面的JQuery笔记见链接：**
+
+ https://blog.csdn.net/wuyxinu/article/details/103669718
+
+
+
+其他模块可参考：
+
+HTML https://blog.csdn.net/wuyxinu/article/details/103515157
+CSS https://blog.csdn.net/wuyxinu/article/details/103583618
+JS https://blog.csdn.net/wuyxinu/article/details/103642800
+JS-下 https://blog.csdn.net/wuyxinu/article/details/103646041
+
+Node.js + Gulp 知识点汇总 https://blog.csdn.net/wuyxinu/article/details/103774211
+Vue 知识点汇总（上）--附案例代码及项目地址 https://blog.csdn.net/wuyxinu/article/details/103965753
+Vue 知识点汇总（下）--附案例代码及项目地址 https://blog.csdn.net/wuyxinu/article/details/103966175
+
